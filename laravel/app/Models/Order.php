@@ -11,4 +11,15 @@ class Order extends Model
 
     protected $guarded = [];
     protected $hidden = ['created_at', 'updated_at'];
+    protected $appends = ['bus', 'driver'];
+
+    public function getBusAttribute()
+    {
+        return Bus::find($this->bus_id)->plate_number;
+    }
+    
+    public function getDriverAttribute()
+    {
+        return Driver::find($this->driver_id)->name;
+    }
 }
